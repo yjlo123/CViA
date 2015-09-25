@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    <div class="cv-list col-lg-12">
+      <h3>
+        CV List
+      </h3>
+    </div>
+
+    <div class="col-lg-6 requirements">
+      <h3>
+        Input requirements
+      </h3>
+      <form>
+        <div class="form-group">
+          <textarea class="form-control" rows="4" id="requirements" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

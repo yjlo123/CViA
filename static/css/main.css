@@ -1,11 +1,13 @@
-.brand {
-  color: white;
-  font-size: 20px;
-  padding-top: 10px;
-}
-
 .content {
   padding-top: 50px;
+}
+
+.form-upload {
+  margin-top: 10px;
+}
+
+.input-group {
+  margin-bottom: 10px;
 }
 
 .btn-file {
@@ -27,6 +29,7 @@
   cursor: inherit;
   display: block;
 }
+
 input[readonly] {
   background-color: white !important;
   cursor: text !important;

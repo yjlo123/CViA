@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="col-lg-6">
+    <h3>
+      Upload CV
+    </h3>
+    <form method="post">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <span class="btn btn-default btn-file">
+            Browse&hellip; <input type="file" name="cvFile">
+          </span>
+        </span>
+        <input type="text" class="form-control" readonly>
+      </div>
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+  </div>
+{% endblock %}
