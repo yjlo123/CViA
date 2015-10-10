@@ -17,7 +17,7 @@ class DataStore:
         with open(self.root_dir_path+'data.json', 'r') as f:
             self.data = json.loads(f.read())
 
-    def print_data(self):
+    def printData(self):
         print(json.dumps(self.data))
         print self.data['cv'][0]['name']
 
@@ -38,4 +38,4 @@ if __name__ == "__main__":
         }
     ]
 }'''))"""
-    x.print_data()
+    x.printData()
