@@ -1,4 +1,3 @@
-from doc_converter import DocConcerter
 
 __author__ = 'haojiang'
 
@@ -47,7 +46,7 @@ class Parser:
                 break;
         return result
 
-    def AnylyseText(self,text):
+    def AnalyseText(self,text):
         textList = text.splitlines()
         while (self.i<len(textList)):
             word = textList[self.i]
@@ -68,11 +67,16 @@ class Parser:
                     self.Education = self.ConstructFinalStr(textList)
             self.i = self.i + 1
 
+    def convertToObj(self,text):
+        self.AnalyseText(text)
+        res = self.__dict__
+        del res["i"]
+        return res
+
 if __name__ == "__main__":
-    converter = DocConverter()
-    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
+   # converter = DocConcerter()
+   # CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
     P = Parser()
-    P.AnylyseText(CV_Text)
+   # P.AnylyseText(CV_Text)
     result = P.__dict__
     del result["i"]
-    print result
