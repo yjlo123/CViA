@@ -69,11 +69,10 @@ class Parser:
             self.i = self.i + 1
 
 if __name__ == "__main__":
-    converter = DocConcerter()
+    converter = DocConverter()
     CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
     P = Parser()
     P.AnylyseText(CV_Text)
     result = P.__dict__
     del result["i"]
     print result
-

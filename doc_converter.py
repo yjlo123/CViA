@@ -8,7 +8,7 @@ from cStringIO import StringIO
 from subprocess import Popen, PIPE
 import docx
 
-class DocConcerter:
+class DocConverter:
     def __init__(self):
         "123"
 
@@ -54,5 +54,5 @@ class DocConcerter:
             return self.convertFromPdf(file_name)
 
 if __name__ == "__main__":
-    x = DocConcerter()
+    x = DocConverter()
     print x.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
