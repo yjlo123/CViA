@@ -55,4 +55,4 @@ class DocConcerter:
 
 if __name__ == "__main__":
     x = DocConcerter()
-    print x.documentToText("cv/simple.doc")
+    print x.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
