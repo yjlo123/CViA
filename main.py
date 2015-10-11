@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, url_for, redirect, request
 from werkzeug import secure_filename
 from doc_converter import DocConverter
+from Parser import Parser
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'
@@ -27,8 +28,14 @@ def upload():
             file.save(full_path)
             print "Stored file", filename
 
-            text = DocConverter().documentToText(full_path)
-            return render_template('cv.html', filename=filename, text=text)
+            cv_text = DocConverter().documentToText(full_path)
+            cv_dict = Parser().convertToObj(cv_text)
+            return render_template(
+                'cv.html',
+                filename=filename,
+                cv_text=cv_text,
+                cv_dict=cv_dict
+            )
 
         return render_template('cv.html', filename=None)
 
