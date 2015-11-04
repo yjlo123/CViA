@@ -62,7 +62,7 @@ class Parser:
                     self.summary = self.ConstructStr(textList)
                 elif word == 'Experience':
                     Expstr = self.ConstructStr(textList)
-                    self.experience = self.ExpParser.ParseExp(Expstr)
+                    self.experience = self.expParser.ParseExp(Expstr)
                 elif word == 'Publications':
                     self.publications = self.ConstructStr(textList)
                 elif word == 'Projects':
@@ -70,7 +70,7 @@ class Parser:
                 elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
                     # print self.LanguageParser.ParseLanguage(Languagestr)
-                    self.language = self.LanguageParser.ParseLanguage(Languagestr)
+                    self.language = self.languageParser.ParseLanguage(Languagestr)
                 elif word == 'Skills & Expertise':
                     Skillstr = self.ConstructStr(textList)
                     print Skillstr
