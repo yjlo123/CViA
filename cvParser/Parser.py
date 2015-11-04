@@ -2,21 +2,22 @@
 import doc_converter
 import ExpParser
 import LanguageParser
+import SkillParser
 __author__ = 'haojiang'
 
 
 class Parser:
 
     def __init__(self):
-        self.Summary = ""
-        self.Experience = ""
-        self.ExpParser = ExpParser.ExpParser()
-        self.Publications = ""
-        self.Project = ""
-        self.Language = ""
-        self.LanguageParser = LanguageParser.LanguageParser()
-        self.Skill = ""
-        self.Education = ""
+        self.summary = ""
+        self.experience = ""
+        self.expParser = ExpParser.ExpParser()
+        self.eublications = ""
+        self.project = ""
+        self.language = ""
+        self.languageParser = LanguageParser.LanguageParser()
+        self.skill = ""
+        self.education = ""
         self.i=0
 
     def IsKeyWord(self,word):
@@ -58,23 +59,24 @@ class Parser:
             word = textList[self.i]
             if self.IsKeyWord(word):
                 if word == 'Summary':
-                    self.Summary = self.ConstructStr(textList)
+                    self.summary = self.ConstructStr(textList)
                 elif word == 'Experience':
                     Expstr = self.ConstructStr(textList)
-                    self.Experience = self.ExpParser.ParseExp(Expstr)
+                    self.experience = self.ExpParser.ParseExp(Expstr)
                 elif word == 'Publications':
-                    self.Publications = self.ConstructStr(textList)
+                    self.publications = self.ConstructStr(textList)
                 elif word == 'Projects':
-                    self.Project = self.ConstructStr(textList)
+                    self.project = self.ConstructStr(textList)
                 elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
-                    print Languagestr.splitlines()
-                    #print self.LanguageParser.ParseLanguage(Languagestr)
-                    self.Language = self.LanguageParser.ParseLanguage(Languagestr)
+                    # print self.LanguageParser.ParseLanguage(Languagestr)
+                    self.language = self.LanguageParser.ParseLanguage(Languagestr)
                 elif word == 'Skills & Expertise':
-                    self.Skill = self.ConstructStr(textList)
+                    Skillstr = self.ConstructStr(textList)
+                    print Skillstr
+                   # self.skill = self.SkillParser.ParseSkill(Skillstr)
                 elif word == 'Education':
-                    self.Education = self.ConstructStr(textList)
+                    self.education = self.ConstructStr(textList)
             self.i = self.i + 1
 
     def convertToObj(self,text):

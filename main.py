@@ -4,7 +4,8 @@ from flask import Flask, render_template, request
 from werkzeug import secure_filename
 
 from doc_converter import DocConverter
-from Parser.Parser import Parser
+from cvParser.Parser import Parser
+from cvParser.Parser import Parser
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'

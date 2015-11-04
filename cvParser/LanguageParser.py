@@ -14,8 +14,7 @@ class LanguageParser:
         breakPoint = len(textList)
         for i in range(0,len(textList)-1):
             if textList[i] == "":
-                breakPoint = i 
+                breakPoint = i
         textList = textList[:breakPoint]
-        print textList
         return LanguageField.LanguageField(textList).__dict__["Language"]
 
