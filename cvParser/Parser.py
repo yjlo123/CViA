@@ -47,7 +47,6 @@ class Parser:
 
     def AnalyseText(self,text):
         textList = text.splitlines()
-        print textList
         lastPageIndex = len(textList)-1
         PageChecker = 2
         while(lastPageIndex>0):
@@ -65,6 +64,7 @@ class Parser:
                 elif word == 'experience':
                     Expstr = self.ConstructStr(textList)
                     self.experience = self.expParser.ParseExp(Expstr)
+                    print self.experience
                 elif word == 'publications':
                     self.publications = self.ConstructStr(textList)
                 elif word == 'projects':
@@ -94,7 +94,8 @@ if __name__ == "__main__":
     converter = doc_converter.DocConverter()
     CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
     P = Parser()
-    P.AnalyseText(CV_Text)
+    P.AnalyseText(CV_Text.lower())
+
     # result = P.__dict__
     # del result["i"]
     # print result["Experience"].splitlines()

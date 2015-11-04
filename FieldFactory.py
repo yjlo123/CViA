@@ -13,6 +13,7 @@ class FieldFacory:
         setattr(res,attr1,"NUS")
         setattr(res,attr2,"May 2016")
         return res
+
     def produceExp(self,text):
         textList = text.split("|||")
         for i in range(0,len(textList)):
