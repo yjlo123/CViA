@@ -12,7 +12,7 @@ class Parser:
         self.summary = ""
         self.experience = ""
         self.expParser = ExpParser.ExpParser()
-        self.eublications = ""
+        self.peublications = ""
         self.project = ""
         self.language = ""
         self.languageParser = LanguageParser.LanguageParser()
@@ -22,17 +22,17 @@ class Parser:
         self.i=0
 
     def IsKeyWord(self,word):
-        return word == "Summary" or word == "Experience" or word == "Publications" or \
-               word == "Projects" or word == "Languages" or word == "Education" or \
-               word == "Skills & Expertise" or word == "Volunteer Experience" or \
-               word == "Certifications" or word == "Interests"
+        return word == "summary" or word == "experience" or word == "publications" or \
+               word == "projects" or word == "languages" or word == "education" or \
+               word == "skills & expertise" or word == "volunteer experience" or \
+               word == "certifications" or word == "interests"
 
     def ConstructStr(self,textList):
         result = ""
         word = textList[self.i+1]
         while(self.IsKeyWord(word) is False or self.i<len(textList) is False):
             self.i+=1
-            if word[:4] !="Page":
+            if word[:4] !="page":
                 if result is "":
                     result = result+word
                 else:
@@ -47,10 +47,11 @@ class Parser:
 
     def AnalyseText(self,text):
         textList = text.splitlines()
+        print textList
         lastPageIndex = len(textList)-1
         PageChecker = 2
         while(lastPageIndex>0):
-            if textList[lastPageIndex][:4] == "Page":
+            if textList[lastPageIndex][:4] == "page":
                 PageChecker -=1 ;
             if PageChecker == 0:
                 break
@@ -59,29 +60,33 @@ class Parser:
         while (self.i<len(textList)):
             word = textList[self.i]
             if self.IsKeyWord(word):
-                if word == 'Summary':
+                if word == 'summary':
                     self.summary = self.ConstructStr(textList)
-                elif word == 'Experience':
+                elif word == 'experience':
                     Expstr = self.ConstructStr(textList)
                     self.experience = self.expParser.ParseExp(Expstr)
-                elif word == 'Publications':
+                elif word == 'publications':
                     self.publications = self.ConstructStr(textList)
-                elif word == 'Projects':
+                elif word == 'projects':
                     self.project = self.ConstructStr(textList)
-                elif word == 'Languages':
+                elif word == 'languages':
                     Languagestr = self.ConstructStr(textList)
                     self.language = self.languageParser.ParseLanguage(Languagestr)
-                elif word == 'Skills & Expertise':
+                elif word == 'skills & expertise':
                     Skillstr = self.ConstructStr(textList)
                     self.skill = self.skillParser.ParseSkill(Skillstr)
-                elif word == 'Education':
+                elif word == 'education':
                     self.education = self.ConstructStr(textList)
             self.i = self.i + 1
 
     def convertToObj(self,text):
+        text = text.lower()
         self.AnalyseText(text)
         res = self.__dict__
         del res["i"]
+        del res["expParser"]
+        del res["skillParser"]
+        del res["languageParser"]
         return res
 
 if __name__ == "__main__":
