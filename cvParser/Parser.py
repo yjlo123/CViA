@@ -17,6 +17,7 @@ class Parser:
         self.language = ""
         self.languageParser = LanguageParser.LanguageParser()
         self.skill = ""
+        self.skillParser = SkillParser.SkillParser()
         self.education = ""
         self.i=0
 
@@ -69,12 +70,10 @@ class Parser:
                     self.project = self.ConstructStr(textList)
                 elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
-                    # print self.LanguageParser.ParseLanguage(Languagestr)
                     self.language = self.languageParser.ParseLanguage(Languagestr)
                 elif word == 'Skills & Expertise':
                     Skillstr = self.ConstructStr(textList)
-                    print Skillstr
-                   # self.skill = self.SkillParser.ParseSkill(Skillstr)
+                    self.skill = self.skillParser.ParseSkill(Skillstr)
                 elif word == 'Education':
                     self.education = self.ConstructStr(textList)
             self.i = self.i + 1
