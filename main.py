@@ -1,8 +1,10 @@
 import os
-from flask import Flask, render_template, url_for, redirect, request
+
+from flask import Flask, render_template, request
 from werkzeug import secure_filename
+
 from doc_converter import DocConverter
-from Parser import Parser
+from Parser.Parser import Parser
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'
@@ -25,6 +27,7 @@ def upload():
             print "Uploaded file", filename
 
             full_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            print full_path
             file.save(full_path)
             print "Stored file", filename
 
@@ -44,3 +47,8 @@ def upload():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8888)
+print "Hello World\n"
+
+
+print "test"
+

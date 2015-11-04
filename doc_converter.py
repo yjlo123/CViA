@@ -1,3 +1,4 @@
+
 __author__ = 'siwei'
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
@@ -54,5 +55,6 @@ class DocConverter:
             return self.convertFromPdf(file_name)
 
 if __name__ == "__main__":
+
     x = DocConverter()
     print x.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
