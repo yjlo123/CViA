@@ -16,5 +16,6 @@ class LanguageParser:
             if textList[i] == "":
                 breakPoint = i
         textList = textList[:breakPoint]
+        return self.factory.produce("language",textList)
         return LanguageField.LanguageField(textList).__dict__["language"]
 

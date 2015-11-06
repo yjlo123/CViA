@@ -5,22 +5,22 @@ import FieldFactory
 __author__ = 'haojiang'
 
 
-class ExpParser:
+class VolunteerExpParser:
     def __init__(self):
         self.factory = FieldFactory.FieldFacory()
 
-    def ParseExp(self,ExpStr):
-        ExpList = ExpStr.splitlines()
+    def ParseVolunteerExp(self,ExpStr):
+        VolunteerExpList = ExpStr.splitlines()
         dateArr = []
         result = []
-        for i in range(0,len(ExpList)):
-            if self.MatchExpDate(ExpList[i]):
+        for i in range(0,len(VolunteerExpList)):
+            if self.MatchExpDate(VolunteerExpList[i]):
                 dateArr.append(i)
         for i in range(0,len(dateArr)):
             index = dateArr[i]
             if i != len(dateArr)-1:
-                title = ExpList[index-1]
-                period = ExpList[index].split("(")[1][:len(ExpList[index].split("(")[1])-1]
+                title = VolunteerExpList[index-1]
+                period = VolunteerExpList[index].split("(")[1][:len(VolunteerExpList[index].split("(")[1])-1]
                 description = ""
 
                 ### Not EMPTY description ###
@@ -28,22 +28,22 @@ class ExpParser:
                     temp = index+2
                     end = dateArr[i+1]-1
                     while(temp!=end):
-                        description = description + ExpList[temp]
+                        description = description + VolunteerExpList[temp]
                         temp+=1
 
             else:
-                title = ExpList[index-1]
-                period = ExpList[index].split("(")[1][:len(ExpList[index].split("(")[1])-1]
+                title = VolunteerExpList[index-1]
+                period = VolunteerExpList[index].split("(")[1][:len(VolunteerExpList[index].split("(")[1])-1]
                 description =""
 
                 ### Not EMPTY description
-                if index+1 != len(ExpList):
+                if index+1 != len(VolunteerExpList):
                     temp=index+2
-                    end = len(ExpList)
+                    end = len(VolunteerExpList)
                     while(temp!=end):
-                        description = description + ExpList[temp]
+                        description = description + VolunteerExpList[temp]
                         temp+=1
-            result.append(self.factory.produce("exp",title,period,description))
+            result.append(self.factory.produce("volunteerexp",title,period,description))
         return result
 
     def MatchExpDate(self,text):  # <--- Check whether the string is a date string

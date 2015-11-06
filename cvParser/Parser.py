@@ -3,6 +3,9 @@ import doc_converter
 import ExpParser
 import LanguageParser
 import SkillParser
+import EduParser
+import VolunteerExpParser
+import InterestsParser
 __author__ = 'haojiang'
 
 
@@ -19,13 +22,19 @@ class Parser:
         self.skill = ""
         self.skillParser = SkillParser.SkillParser()
         self.education = ""
+        self.eduParser = EduParser.EduParser()
+        self.volunteerexperience=""
+        self.volunteerexperienceParser = VolunteerExpParser.VolunteerExpParser()
+        self.interest = ""
+        self.interestParser = InterestsParser.InterestParser()
         self.i=0
+        self.keywords = ["summary","experience","publications",
+                         "projects","languages","education",
+                         "skills & expertise","volunteer experience","certifications",
+                         "interests","\x0cinterests"]
 
     def IsKeyWord(self,word):
-        return word == "summary" or word == "experience" or word == "publications" or \
-               word == "projects" or word == "languages" or word == "education" or \
-               word == "skills & expertise" or word == "volunteer experience" or \
-               word == "certifications" or word == "interests"
+        return word in self.keywords
 
     def ConstructStr(self,textList):
         result = ""
@@ -64,7 +73,6 @@ class Parser:
                 elif word == 'experience':
                     Expstr = self.ConstructStr(textList)
                     self.experience = self.expParser.ParseExp(Expstr)
-                    print self.experience
                 elif word == 'publications':
                     self.publications = self.ConstructStr(textList)
                 elif word == 'projects':
@@ -76,7 +84,14 @@ class Parser:
                     Skillstr = self.ConstructStr(textList)
                     self.skill = self.skillParser.ParseSkill(Skillstr)
                 elif word == 'education':
-                    self.education = self.ConstructStr(textList)
+                    Edustr = self.ConstructStr(textList)
+                    self.education = self.eduParser.ParseEdu(Edustr)
+                elif word == 'volunteer experience':
+                    VolunteerExpstr = self.ConstructStr(textList)
+                    self.volunteerexperience = self.volunteerexperienceParser.ParseVolunteerExp(VolunteerExpstr)
+                elif word == '\x0cinterests' or word == 'interests':
+                    Intereststr = self.ConstructStr(textList)
+                    self.interest = self.interestParser.ParseInterest(Intereststr)
             self.i = self.i + 1
 
     def convertToObj(self,text):
@@ -87,6 +102,7 @@ class Parser:
         del res["expParser"]
         del res["skillParser"]
         del res["languageParser"]
+        del res["eduParser"]
         return res
 
 if __name__ == "__main__":

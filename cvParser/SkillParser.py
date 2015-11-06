@@ -11,4 +11,4 @@ class SkillParser:
 
     def ParseSkill(self,text):
         textList = text.splitlines()
-        return Skill_ExpertiseField.Skill_ExpertiseField(textList).__dict__["skill"]
+        return self.factory.produce("skill",textList)
