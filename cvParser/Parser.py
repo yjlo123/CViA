@@ -120,7 +120,6 @@ class Parser:
             self.i = self.i + 1
 
     def convertToObj(self,text):
-        text = text.lower()
         self.AnalyseText(text)
         res = self.__dict__
         del res["i"]
@@ -128,6 +127,11 @@ class Parser:
         del res["skillParser"]
         del res["languageParser"]
         del res["eduParser"]
+        del res["publicationsParser"]
+        del res["projectParser"]
+        del res["certificationsParser"]
+        del res["interestParser"]
+        del res["volunteerexperienceParser"]
         return res
 
 if __name__ == "__main__":
@@ -135,7 +139,7 @@ if __name__ == "__main__":
     converter = doc_converter.DocConverter()
     CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
     P = Parser()
-    P.AnalyseText(CV_Text)
+    print P.convertToObj(CV_Text)
 
     # result = P.__dict__
     # del result["i"]
