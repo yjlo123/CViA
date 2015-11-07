@@ -96,7 +96,9 @@ class Parser:
                     self.certifications = self.certificationsParser.ParseCertifications(Certificationsstr)
                     #print self.certifications
                 elif word == 'Projects':
-                    self.project = self.ConstructStr(textList)
+                    Projectstr = self.ConstructStr(textList)
+                    self.project = self.projectParser.ParseProjects(Projectstr)
+                    print self.project
                 elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
                     self.language = self.languageParser.ParseLanguage(Languagestr)
@@ -132,6 +134,7 @@ class Parser:
         del res["certificationsParser"]
         del res["interestParser"]
         del res["volunteerexperienceParser"]
+        del res["keywords"]
         return res
 
 if __name__ == "__main__":
@@ -139,7 +142,7 @@ if __name__ == "__main__":
     converter = doc_converter.DocConverter()
     CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
     P = Parser()
-    print P.convertToObj(CV_Text)
+    P.convertToObj(CV_Text)
 
     # result = P.__dict__
     # del result["i"]

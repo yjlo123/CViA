@@ -32,8 +32,5 @@ class Certifications:
                 else:
                     license = license + " " + nextline[k]
 
-            company = textList[i+1].split()[0]
-            license = textList[i+1].split()[1]
-            date = textList[i+1].split()[2]
-            result.append(self.factory.produce("certifications",title,company,license,date))
+            result.append(self.factory.produce("certifications",title.strip(),company.strip(),license.strip(),date.strip()))
         return result

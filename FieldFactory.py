@@ -35,6 +35,9 @@ class FieldFacory:
     def produceCertifications(self,title,company,license,date):
         return CertificationField.CertificationField(title,company,license,date).__dict__
 
+    def produceProjects(self,title,date,description):
+        return ProjectField.ProjectField(title,date,description).__dict__
+
     def produce(self,*args):
         fieldName = args[0]
         if fieldName == "exp":
@@ -47,6 +50,11 @@ class FieldFacory:
             degree = args[2]
             major = args[3]
             return self.produceEdu(university,degree,major)
+        elif fieldName == "projects":
+            title = args[1]
+            date = args[2]
+            description = args[3]
+            return self.produceProjects(title,date,description)
         elif fieldName == "language":
             return self.produceLanguage(args[1])
         elif fieldName == "skill":
