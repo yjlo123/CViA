@@ -78,10 +78,8 @@ class Parser:
         for i in range(0,len(textList)):
             textList[i] = textList[i].strip() # Trim
         textList = filter(None,textList)  # Remove ['']
-
         while (self.i<len(textList)):
             word = textList[self.i]
-            #print word
             if self.IsKeyWord(word):
                 if word == 'summary':
                     self.summary = self.ConstructStr(textList)
