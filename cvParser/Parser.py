@@ -90,7 +90,8 @@ class Parser:
                     self.experience = self.expParser.ParseExp(Expstr)
                     #print self.experience
                 elif word == 'Publications':
-                    self.publications = self.ConstructStr(textList)
+                    Publicationsstr = self.ConstructStr(textList)
+                    self.publications = self.publicationsParser.ParsePublications(Publicationsstr)
                 elif word == 'Certifications':
                     Certificationsstr = self.ConstructStr(textList)
                     self.certifications = self.certificationsParser.ParseCertifications(Certificationsstr)
@@ -98,7 +99,7 @@ class Parser:
                 elif word == 'Projects':
                     Projectstr = self.ConstructStr(textList)
                     self.project = self.projectParser.ParseProjects(Projectstr)
-                    print self.project
+                    #print self.project
                 elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
                     self.language = self.languageParser.ParseLanguage(Languagestr)
@@ -140,7 +141,7 @@ class Parser:
 if __name__ == "__main__":
 
     converter = doc_converter.DocConverter()
-    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
+    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
     P = Parser()
     P.convertToObj(CV_Text)
 

@@ -49,8 +49,8 @@ class ExpParser:
     def MatchExpDate(self,text):  # <--- Check whether the string is a date string
         if len(text.split("("))>1 and len(text)<50 and "-" in text:
         # From " May 2013 - May 2015 (2 years)" extract date.
-            first = text.split("(")[0].split("-")[0]
-            second = text.split("(")[0].split("-")[1]
+            first = text.split("(")[0].split("-")[0].strip()
+            second = text.split("(")[0].split("-")[1].strip()
             return re.findall(r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}', first) !=[] and \
                    (re.findall(r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}', second) !=[] or second =="Present")
         else:
