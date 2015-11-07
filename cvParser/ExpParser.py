@@ -51,7 +51,7 @@ class ExpParser:
         # From " May 2013 - May 2015 (2 years)" extract date.
             first = text.split("(")[0].split("-")[0]
             second = text.split("(")[0].split("-")[1]
-            return re.findall(r'(?:january|february|march|april|may|june|july|august|september|october|november|december)\s\d{4}', first) !=[] and \
-                   (re.findall(r'(?:january|february|march|april|may|june|july|august|september|october|november|december)\s\d{4}', second) !=[] or second =="  present ")
+            return re.findall(r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}', first) !=[] and \
+                   (re.findall(r'(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}', second) !=[] or second =="Present")
         else:
             return False

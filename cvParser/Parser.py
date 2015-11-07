@@ -1,4 +1,4 @@
-
+import unicodedata
 import doc_converter
 import ExpParser
 import LanguageParser
@@ -6,6 +6,10 @@ import SkillParser
 import EduParser
 import VolunteerExpParser
 import InterestsParser
+import PublicationsParser
+import ProjectsParser
+import CertificationsParser
+import re
 __author__ = 'haojiang'
 
 
@@ -15,8 +19,10 @@ class Parser:
         self.summary = ""
         self.experience = ""
         self.expParser = ExpParser.ExpParser()
-        self.peublications = ""
+        self.publications = ""
+        self.publicationsParser = PublicationsParser.PublicationsParser()
         self.project = ""
+        self.projectParser = ProjectsParser.ProjectsParser()
         self.language = ""
         self.languageParser = LanguageParser.LanguageParser()
         self.skill = ""
@@ -27,11 +33,13 @@ class Parser:
         self.volunteerexperienceParser = VolunteerExpParser.VolunteerExpParser()
         self.interest = ""
         self.interestParser = InterestsParser.InterestParser()
+        self.certifications = ""
+        self.certificationsParser = CertificationsParser.Certifications()
         self.i=0
-        self.keywords = ["summary","experience","publications",
-                         "projects","languages","education",
-                         "skills & expertise","volunteer experience","certifications",
-                         "interests","\x0cinterests"]
+        self.keywords = ["Summary","Experience","Publications",
+                         "Projects","Languages","Education",
+                         "Skills & Expertise","Volunteer Experience","Certifications",
+                         "Interests","\x0cInterests"]
 
     def IsKeyWord(self,word):
         return word in self.keywords
@@ -41,7 +49,7 @@ class Parser:
         word = textList[self.i+1]
         while(self.IsKeyWord(word) is False or self.i<len(textList) is False):
             self.i+=1
-            if word[:4] !="page":
+            if word[:4] !="Page":
                 if result is "":
                     result = result+word
                 else:
@@ -55,43 +63,56 @@ class Parser:
 
 
     def AnalyseText(self,text):
+        if isinstance(text, unicode):
+            text = unicodedata.normalize('NFKD', text).encode('ascii','ignore')
         textList = text.splitlines()
-        lastPageIndex = len(textList)-1
-        PageChecker = 2
-        while(lastPageIndex>0):
-            if textList[lastPageIndex][:4] == "page":
-                PageChecker -=1 ;
-            if PageChecker == 0:
-                break
-            lastPageIndex -=1;
-        textList = textList[:lastPageIndex]
+        for i in range(len(textList)-1,0,-1):
+            list = textList[i].split()
+            if len(list) > 3:
+                if list[0] == "Contact" and list[len(list)-1] == "LinkedIn":
+                    textList = textList[:i-5]
+                    break
+
+        for i in range(0,len(textList)):
+            textList[i] = textList[i].strip() # Trim
+        textList = filter(None,textList)  # Remove ['']
         while (self.i<len(textList)):
             word = textList[self.i]
             if self.IsKeyWord(word):
-                if word == 'summary':
+                if word == 'Summary':
                     self.summary = self.ConstructStr(textList)
-                elif word == 'experience':
+                elif word == 'Experience':
                     Expstr = self.ConstructStr(textList)
                     self.experience = self.expParser.ParseExp(Expstr)
-                elif word == 'publications':
+                    #print self.experience
+                elif word == 'Publications':
                     self.publications = self.ConstructStr(textList)
-                elif word == 'projects':
+                elif word == 'Certifications':
+                    Certificationsstr = self.ConstructStr(textList)
+                    self.certifications = self.certificationsParser.ParseCertifications(Certificationsstr)
+                    #print self.certifications
+                elif word == 'Projects':
                     self.project = self.ConstructStr(textList)
-                elif word == 'languages':
+                elif word == 'Languages':
                     Languagestr = self.ConstructStr(textList)
                     self.language = self.languageParser.ParseLanguage(Languagestr)
-                elif word == 'skills & expertise':
+                    #print self.language
+                elif word == 'Skills & Expertise':
                     Skillstr = self.ConstructStr(textList)
                     self.skill = self.skillParser.ParseSkill(Skillstr)
-                elif word == 'education':
+                    #print self.skill
+                elif word == 'Education':
                     Edustr = self.ConstructStr(textList)
                     self.education = self.eduParser.ParseEdu(Edustr)
-                elif word == 'volunteer experience':
+                    #print self.education
+                elif word == 'Volunteer Experience':
                     VolunteerExpstr = self.ConstructStr(textList)
                     self.volunteerexperience = self.volunteerexperienceParser.ParseVolunteerExp(VolunteerExpstr)
-                elif word == '\x0cinterests' or word == 'interests':
+                    #print self.volunteerexperience
+                elif word == '\x0cInterests' or word == 'Interests':
                     Intereststr = self.ConstructStr(textList)
                     self.interest = self.interestParser.ParseInterest(Intereststr)
+                    #print self.interest
             self.i = self.i + 1
 
     def convertToObj(self,text):
@@ -110,7 +131,7 @@ if __name__ == "__main__":
     converter = doc_converter.DocConverter()
     CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
     P = Parser()
-    P.AnalyseText(CV_Text.lower())
+    P.AnalyseText(CV_Text)
 
     # result = P.__dict__
     # del result["i"]

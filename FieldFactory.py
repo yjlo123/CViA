@@ -6,6 +6,9 @@ from CVFields import LanguageField
 from CVFields import Skill_ExpertiseField
 from CVFields import VolunteerField
 from CVFields import InterestsField
+from CVFields import CertificationField
+from CVFields import ProjectField
+from CVFields import PublicationField
 
 class FieldFacory:
     def __init__(self):
@@ -28,6 +31,9 @@ class FieldFacory:
 
     def produceInterest(self,textList):
         return InterestsField.InterestsField(textList).__dict__["interest"]
+
+    def produceCertifications(self,title,company,license,date):
+        return CertificationField.CertificationField(title,company,license,date).__dict__
 
     def produce(self,*args):
         fieldName = args[0]
@@ -52,3 +58,9 @@ class FieldFacory:
             return self.produceVolunteerExp(title,period,description)
         elif fieldName == "interest":
             return self.produceInterest(args[1])
+        elif fieldName == "certifications":
+            title = args[1]
+            company = args[2]
+            license = args[3]
+            date = args[4]
+            return self.produceCertifications(title,company,license,date)

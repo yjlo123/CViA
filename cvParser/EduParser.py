@@ -18,9 +18,9 @@ class EduParser:
                 indexarr.append(i)
         for i in range(0,len(indexarr)):
             theindex = indexarr[i]
-            university = textList[theindex-1]
-            degree = textList[theindex].split(",")[0]
-            major = textList[theindex].split(",")[1]
+            university = textList[theindex-1].strip()
+            degree = textList[theindex].split(",")[0].strip()
+            major = textList[theindex].split(",")[1].strip()
             result.append(self.factory.produce("edu",university,degree,major))
         return result
 

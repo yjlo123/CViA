@@ -10,4 +10,6 @@ class InterestParser:
 
     def ParseInterest(self,text):
         textList = text.split(",")
+        for i in range(0,len(textList)):
+            textList[i] = textList[i].strip()
         return self.factory.produce("interest",textList)
