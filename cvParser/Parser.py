@@ -10,6 +10,7 @@ import PublicationsParser
 import ProjectsParser
 import CertificationsParser
 import re
+import unicodedata
 __author__ = 'haojiang'
 
 
@@ -66,6 +67,7 @@ class Parser:
         if isinstance(text, unicode):
             text = unicodedata.normalize('NFKD', text).encode('ascii','ignore')
         textList = text.splitlines()
+
         for i in range(len(textList)-1,0,-1):
             list = textList[i].split()
             if len(list) > 3:
@@ -76,10 +78,12 @@ class Parser:
         for i in range(0,len(textList)):
             textList[i] = textList[i].strip() # Trim
         textList = filter(None,textList)  # Remove ['']
+
         while (self.i<len(textList)):
             word = textList[self.i]
+            #print word
             if self.IsKeyWord(word):
-                if word == 'Summary':
+                if word == 'summary':
                     self.summary = self.ConstructStr(textList)
                 elif word == 'Experience':
                     Expstr = self.ConstructStr(textList)

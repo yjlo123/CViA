@@ -1,0 +1,100 @@
+California Institute of Technology
+University of Oxford
+Stanford University
+University of Cambridge
+Massachusetts Institute of Technology
+Harvard University
+Princeton University
+Imperial College London
+ETH Zurich – Swiss Federal Institute of Technology Zurich
+University of Chicago
+Johns Hopkins University
+Yale University
+University of California, Berkeley
+University College London
+Columbia University
+University of California, Los Angeles
+University of Pennsylvania
+Cornell University
+University of Toronto
+Duke University
+University of Michigan
+Carnegie Mellon University
+London School of Economics and Political Science
+University of Edinburgh
+Northwestern University
+National University of Singapore
+King’s College London
+Karolinska Institute
+LMU Munich
+New York University
+École Polytechnique Fédérale de Lausanne
+University of Washington
+University of Melbourne
+University of British Columbia
+KU Leuven
+University of Illinois at Urbana-Champaign
+Heidelberg University
+McGill University
+University of California, San Diego
+University of California, Santa Barbara
+Georgia Institute of Technology
+Peking University
+University of Tokyo
+University of California, Davis
+University of Hong Kong
+University of Texas at Austin
+Tsinghua University
+Wageningen University and Research Center
+Humboldt University of Berlin
+University of Wisconsin-Madison
+Brown University
+Australian National University
+Technical University of Munich
+École Normale Supérieure
+Nanyang Technological University
+University of Manchester
+University of Sydney
+University of Amsterdam
+Hong Kong University of Science and Technology
+The University of Queensland
+Washington University in St Louis
+Utrecht University
+University of North Carolina at Chapel Hill
+Boston University
+Delft University of Technology
+University of Minnesota
+Leiden University
+University of Southern California
+University of Bristol
+Durham University
+Erasmus University Rotterdam
+Free University of Berlin
+Monash University
+University of Groningen
+Pennsylvania State University
+University of Glasgow
+University of Helsinki
+University of Tübingen
+University of Pittsburgh
+University of Warwick
+Uppsala University
+University of Copenhagen
+University of New South Wales
+University of Freiburg
+Seoul National University
+University of St Andrews
+Vanderbilt University
+Kyoto University
+Maastricht University
+Emory University
+Lund University
+Ohio State University
+University of Exeter
+University of Bonn
+Georgetown University
+McMaster University
+University of Sheffield
+Queen Mary University of London
+University of Göttingen
+Michigan State University

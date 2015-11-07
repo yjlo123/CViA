@@ -1,6 +1,10 @@
+import doc_converter
+
 __author__ = 'siwei'
 
 import pprint
+from cvParser.Parser import Parser
+import unicodedata
 
 class Evaluator:
 
@@ -17,27 +21,41 @@ class Evaluator:
 
     def evaluate(self):
         for cv in self.cvList:
-            thisScore = 0
+            thisScore = {'language':0}
             for req in self.requirement:
                 if req == 'education':
-                    thisScore += self.evaluateEducation(self.requirement[req], cv[req])
+                    thisScore['education'] = self.evaluateEducation(self.requirement[req], cv[req])
                 elif req == 'skill':
-                    thisScore += self.evaluateSkill(self.requirement[req], cv[req])
+                    thisScore['skill'] = self.evaluateSkill(self.requirement[req], cv[req])
                 elif req == 'language':
-                    thisScore += self.evaluateLanguage(self.requirement[req], cv[req])
+                    thisScore['language'] = self.evaluateLanguage(self.requirement[req], cv[req])
                 elif req == 'experience':
-                    thisScore += 0
+                    thisScore['experience'] = 0
                 else:
-                    thisScore += 0
+                    thisScore['other'] = 0
             self.scoreList.append({'score':thisScore,'cv':cv})
 
-    def evaluateEducation(self, req, cv):
-        if req == [] or cv == []:
-            return 0
+    def evaluateEducation(self, reqEdu, cvEdu):
+        eduScore = 0
+        if reqEdu == [] or cvEdu == []:
+            return eduScore
         #print "req "+req[0]+"   has"+str(cv)
-        if req[0] in cv:
-            return 20
-        return 0
+        uniList = []
+        with open('university.txt') as f:
+            content = f.readlines()
+            for n in range(0, len(content)):
+                uni = content[n][:-1].lower()
+                uniList.append(uni)
+        #print uni_list
+
+        for eduItem in cvEdu:
+            # check degree requirement
+            if reqEdu[0] in eduItem['degree']:
+                eduScore += 20
+            # check university ranking
+            if eduItem['university'] in uniList:
+                eduScore += 5
+        return eduScore
 
     def evaluateSkill(self, req, cv):
         if req == [] or cv == []:
@@ -77,19 +95,22 @@ class Evaluator:
 if __name__ == "__main__":
     cvs = [{
         'skill':['web','android', 'ios', 'javascript'],
-        'education':['master','phd'],
-        'language':['english','chinese']
+        'education':{
+            'degree': ['master','phd'],
+            'university':[]
+        },
+        'language':['English','Chinese']
     },{
         'skill':['html','asp.net','azure'],
         'education':['bachelor'],
-        'language':['english']
+        'language':['English']
     }]
 
     requirement = {
-        'education':['master'],
+        'education':['bachelor'],
         'skill': {
-            'must': ['android'],
-            'good': []
+            'must': ['windows','vpn','web development'],
+            'good': ['xp']
         },
         'language':{
             'must': ['english'],
@@ -97,7 +118,23 @@ if __name__ == "__main__":
         }
     }
     x = Evaluator()
+    '''
     x.setCVs(cvs)
+    x.setRequirement(requirement)
+    x.evaluate()
+    x.printRank()
+    '''
+
+    converter = doc_converter.DocConverter()
+    #CV_Text = converter.documentToText("cv/simple.doc")
+    CV_Text = converter.documentToText("cv/DesmondLim.pdf")
+    #print CV_Text
+    P = Parser()
+    cvobj = P.convertToObj(CV_Text)
+
+    pp = pprint.PrettyPrinter(indent=4)
+    #pp.pprint(cvobj)
+    x.setCVs([cvobj])
     x.setRequirement(requirement)
     x.evaluate()
     x.printRank()
