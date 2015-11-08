@@ -10,14 +10,89 @@
 
     <div class="col-lg-6 requirements">
       <h3>
-        Input requirements
+        Requirements
       </h3>
-      <form>
-        <div class="form-group">
-          <textarea class="form-control" rows="4" id="requirements" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      <div class="well well-small">
+        <form role="form" class="form-horizontal" method="post" id="requirements-form" action="/process">
+          {# education #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="education">Education</label>
+            <div class="col-md-8">
+              <select class="form-control" id="education" name="education" placeholder="Education" required="required" title="" type="text">
+                <option value="Bachelor">Bachelor</option>
+                <option value="Master">Master</option>
+                <option value="Doctoral">Doctoral</option>
+              </select>
+            </div>
+          </div>
+
+          {# Skill - must #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="skill_must">Skill (Must have)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="skill_must" maxlength="30" name="skill_must" placeholder="Skill (must have)" required="required" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="skill_must" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Skill - good #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="skill_good">Skill (Good to have)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="skill_good" maxlength="30" name="skill_good" placeholder="Skill (good to have)" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="skill_good" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Language - must know #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="language_must">Language (Must know)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="language_must" maxlength="30" name="language_must" placeholder="Language (must know)" required="required" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="language_must" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Language - good to know #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="language_good">Language (Good to know)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="language_good" maxlength="30" name="language_good" placeholder="Language (good to know)" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="language_good" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Experience - must #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="experience_must">Experience (Must have)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="experience_must" maxlength="30" name="experience_must" placeholder="Experience (must have)" required="required" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="experience_must" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Experience - good #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="experience_good">Experience (Good to have)</label>
+            <div class="col-md-8">
+              <input class="form-control" id="experience_good" maxlength="30" name="experience_good" placeholder="Experience (good to have)" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="experience_good" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Other #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="other">Other</label>
+            <div class="col-md-8">
+              <input class="form-control" id="other" maxlength="30" name="other" placeholder="Other" title="" type="text"/>
+              <input class="form-control" maxlength="30" name="other" placeholder="" title="" type="text"/>
+            </div>
+          </div>
+
+          {# Submit #}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -46,10 +46,21 @@ def upload():
     # GET
     return render_template('upload.html')
 
+@app.route('/process', methods=['POST'])
+def process():
+    # POST
+    if request.method == 'POST':
+        print 'education = ', request.form['education']
+        print request.form.getlist('skill_must')
+        print request.form.getlist('skill_good')
+        print request.form.getlist('language_must')
+        print request.form.getlist('language_good')
+        print request.form.getlist('experience_must')
+        print request.form.getlist('experience_good')
+        print request.form.getlist('other')
+        return render_template('index.html')
+
+    return render_template('index.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8888)
-print "Hello World\n"
-
-
-print "test"
-
