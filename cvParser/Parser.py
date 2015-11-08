@@ -17,6 +17,7 @@ __author__ = 'haojiang'
 class Parser:
 
     def __init__(self):
+        self.path = ""
         self.summary = ""
         self.experience = ""
         self.expParser = ExpParser.ExpParser()
@@ -80,6 +81,7 @@ class Parser:
         for i in range(0,len(textList)):
             textList[i] = textList[i].strip() # Trim
         textList = filter(None,textList)  # Remove ['']
+        self.path = textList[0]
         while (self.i<len(textList)):
             word = textList[self.i]
             if self.IsKeyWord(word):
@@ -146,6 +148,7 @@ class Parser:
         return res
 
     def reset(self):
+        self.path = ""
         self.summary = ""
         self.experience = ""
         self.expParser = ExpParser.ExpParser()
