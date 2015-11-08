@@ -36,11 +36,13 @@ class Parser:
         self.interestParser = InterestsParser.InterestParser()
         self.certifications = ""
         self.certificationsParser = CertificationsParser.Certifications()
+        self.honors = ""
+        self.organizations = ""
         self.i=0
         self.keywords = ["Summary","Experience","Publications",
                          "Projects","Languages","Education",
                          "Skills & Expertise","Volunteer Experience","Certifications",
-                         "Interests","\x0cInterests"]
+                         "Interests","Honors and Awards","Organizations"]
 
     def IsKeyWord(self,word):
         return word in self.keywords
@@ -89,7 +91,7 @@ class Parser:
                     #print self.experience
                 elif word == 'Publications':
                     Publicationsstr = self.ConstructStr(textList)
-                    self.publications = self.publicationsParser.ParsePublications(Publicationsstr)
+                    self.publications = Publicationsstr
                 elif word == 'Certifications':
                     Certificationsstr = self.ConstructStr(textList)
                     self.certifications = self.certificationsParser.ParseCertifications(Certificationsstr)
@@ -118,11 +120,18 @@ class Parser:
                     Intereststr = self.ConstructStr(textList)
                     self.interest = self.interestParser.ParseInterest(Intereststr)
                     #print self.interest
+                elif word == "Honors and Awards":
+                    str = self.ConstructStr(textList)
+                    self.honors = str;
+                elif word == "Organizations":
+                    str = self.ConstructStr(textList)
+                    self.organizations = str
             self.i = self.i + 1
 
     def convertToObj(self,text):
         self.AnalyseText(text)
-        res = self.__dict__
+        res = self.__dict__.copy()
+        self.reset()
         del res["i"]
         del res["expParser"]
         del res["skillParser"]
@@ -136,14 +145,45 @@ class Parser:
         del res["keywords"]
         return res
 
+    def reset(self):
+        self.summary = ""
+        self.experience = ""
+        self.expParser = ExpParser.ExpParser()
+        self.publications = ""
+        self.publicationsParser = PublicationsParser.PublicationsParser()
+        self.project = ""
+        self.projectParser = ProjectsParser.ProjectsParser()
+        self.language = ""
+        self.languageParser = LanguageParser.LanguageParser()
+        self.skill = ""
+        self.skillParser = SkillParser.SkillParser()
+        self.education = ""
+        self.eduParser = EduParser.EduParser()
+        self.volunteerexperience=""
+        self.volunteerexperienceParser = VolunteerExpParser.VolunteerExpParser()
+        self.interest = ""
+        self.interestParser = InterestsParser.InterestParser()
+        self.certifications = ""
+        self.certificationsParser = CertificationsParser.Certifications()
+        self.honors = ""
+        self.organizations = ""
+        self.i=0
 if __name__ == "__main__":
 
-    print "here"
     converter = doc_converter.DocConverter()
-    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
-    print "herhe"
+    CV1 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
+    CV2 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
+    CV3 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/PraveenDeorani.pdf")
+    CV4 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/RussellOng.pdf")
+    CV5 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YaminiBhaskar.pdf")
     P = Parser()
-    print P.convertToObj(CV_Text)
+    print P.convertToObj(CV1)
+    print P.convertToObj(CV2)
+    print P.convertToObj(CV3)
+    print P.convertToObj(CV4)
+    print P.convertToObj(CV5)
+
+
 
     # result = P.__dict__
     # del result["i"]

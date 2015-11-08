@@ -17,8 +17,8 @@ class FieldFacory:
     def produceEdu(self,university,degree,major):
        return EducationField.EducationField(university,degree,major).__dict__
 
-    def produceExp(self,title,period,description):
-        return ExperienceField.ExperienceField(title,period,description).__dict__
+    def produceExp(self,title,period,description,company):
+        return ExperienceField.ExperienceField(title,period,description,company).__dict__
 
     def produceLanguage(self,textList):
         return LanguageField.LanguageField(textList).__dict__["language"]
@@ -44,7 +44,8 @@ class FieldFacory:
             title = args[1]
             period = args[2]
             description = args[3]
-            return self.produceExp(title,period,description)
+            company = args[4]
+            return self.produceExp(title,period,description,company)
         elif fieldName == "edu":
             university = args[1]
             degree = args[2]

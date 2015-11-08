@@ -16,12 +16,15 @@ class ExpParser:
         for i in range(0,len(ExpList)):
             if self.MatchExpDate(ExpList[i]):
                 dateArr.append(i)
-        print ExpList
-        print len(dateArr)
         for i in range(0,len(dateArr)):
             index = dateArr[i]
             if i != len(dateArr)-1:
-                title = ExpList[index-1]
+                if(len(ExpList[index-1].split(" at ")) == 2):
+                    title = ExpList[index-1].split(" at ")[0].strip()
+                    company = ExpList[index-1].split(" at ")[1].strip()
+                else:
+                    title = ExpList[index-1]
+                    company = ""
                 period = ExpList[index].split("(")[1][:len(ExpList[index].split("(")[1])-1]
                 description = ""
 
@@ -34,7 +37,12 @@ class ExpParser:
                         temp+=1
 
             else:
-                title = ExpList[index-1]
+                if(len(ExpList[index-1].split(" at ")) == 2):
+                    title = ExpList[index-1].split(" at ")[0].strip()
+                    company = ExpList[index-1].split(" at ")[1].strip()
+                else:
+                    title = ExpList[index-1]
+                    company = ""
                 period = ExpList[index].split("(")[1][:len(ExpList[index].split("(")[1])-1]
                 description =""
 
@@ -45,7 +53,7 @@ class ExpParser:
                     while(temp!=end):
                         description = description + ExpList[temp]
                         temp+=1
-            result.append(self.factory.produce("exp",title,period,description))
+            result.append(self.factory.produce("exp",title,period,description,company))
         return result
 
     def MatchExpDate(self,text):  # <--- Check whether the string is a date string
