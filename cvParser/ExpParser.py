@@ -16,6 +16,8 @@ class ExpParser:
         for i in range(0,len(ExpList)):
             if self.MatchExpDate(ExpList[i]):
                 dateArr.append(i)
+        print ExpList
+        print len(dateArr)
         for i in range(0,len(dateArr)):
             index = dateArr[i]
             if i != len(dateArr)-1:
@@ -24,8 +26,8 @@ class ExpParser:
                 description = ""
 
                 ### Not EMPTY description ###
-                if index+3 != dateArr[i+1]:
-                    temp = index+2
+                if index+1 != dateArr[i+1]-1:
+                    temp = index+1
                     end = dateArr[i+1]-1
                     while(temp!=end):
                         description = description + ExpList[temp]
@@ -38,7 +40,7 @@ class ExpParser:
 
                 ### Not EMPTY description
                 if index+1 != len(ExpList):
-                    temp=index+2
+                    temp=index+1
                     end = len(ExpList)
                     while(temp!=end):
                         description = description + ExpList[temp]

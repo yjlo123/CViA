@@ -138,10 +138,12 @@ class Parser:
 
 if __name__ == "__main__":
 
+    print "here"
     converter = doc_converter.DocConverter()
-    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
+    CV_Text = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
+    print "herhe"
     P = Parser()
-    P.convertToObj(CV_Text)
+    print P.convertToObj(CV_Text)
 
     # result = P.__dict__
     # del result["i"]
