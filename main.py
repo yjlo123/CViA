@@ -50,15 +50,23 @@ def upload():
 def process():
     # POST
     if request.method == 'POST':
-        print 'education = ', request.form['education']
-        print request.form.getlist('skill_must')
-        print request.form.getlist('skill_good')
-        print request.form.getlist('language_must')
-        print request.form.getlist('language_good')
-        print request.form.getlist('experience_must')
-        print request.form.getlist('experience_good')
-        print request.form.getlist('other')
-        return render_template('index.html')
+        req = {
+            'education': request.form['education'],
+            'skill': {
+                'must': request.form.getlist('skill_must'),
+                'good': request.form.getlist('skill_good')
+            },
+            'language': {
+                'must': request.form.getlist('language_must'),
+                'good': request.form.getlist('language_good')
+            },
+            'experience': {
+                'must': request.form.getlist('experience_must'),
+                'good': request.form.getlist('experience_must')
+            },
+            'other': request.form.getlist('other')
+        }
+        print req
 
     return render_template('index.html')
 
