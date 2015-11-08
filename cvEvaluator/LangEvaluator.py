@@ -13,7 +13,7 @@ class LangEvaluator(BaseEvaluator):
         cv_lang = cv[self.name]
         if req_lang == [] or cv_lang == []:
             return 0
-        this_score = 0
+        lang_score = 0
         for pri in req_lang:
             lang_list = req_lang[pri]
             if pri == 'must':
@@ -22,5 +22,6 @@ class LangEvaluator(BaseEvaluator):
                 base_score = 2
             for s in lang_list:
                 if s in cv_lang:
-                    this_score += base_score
-        self.score = this_score
+                    lang_score += base_score
+        #self.score = lang_score
+        return lang_score

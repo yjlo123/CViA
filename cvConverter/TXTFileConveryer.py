@@ -9,4 +9,4 @@ class TXTFileConverter(BaseConverter):
         self.type = "txt"
 
     def convert(self):
-        return open(self.path).read()
+        return self.text+open(self.path).read()

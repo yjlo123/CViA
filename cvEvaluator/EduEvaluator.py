@@ -30,4 +30,5 @@ class EduEvaluator(BaseEvaluator):
             # check university ranking
             if eduItem['university'].lower() in uni_list:
                 edu_score += 5
-        self.score = edu_score
+        #self.score = edu_score
+        return edu_score

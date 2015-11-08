@@ -14,4 +14,4 @@ class DOCXFileConverter(BaseConverter):
         docText = '\n'.join([
             paragraph.text.encode('utf-8') for paragraph in document.paragraphs if paragraph.text != ""
         ])
-        return docText
+        return self.text+docText

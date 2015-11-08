@@ -12,4 +12,4 @@ class DOCFileConverter(BaseConverter):
         cmd = ['antiword', self.path]
         p = Popen(cmd, stdout=PIPE)
         stdout, stderr = p.communicate()
-        return stdout.decode('ascii', 'ignore')
+        return self.text+stdout.decode('ascii', 'ignore')

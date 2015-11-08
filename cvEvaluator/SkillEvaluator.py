@@ -27,4 +27,5 @@ class SkillEvaluator(BaseEvaluator):
                 if s.lower() in (skill.lower() for skill in cv_skill):
                     skill_score += base_score
                     #print "++++++ "+s+" "+str(base_score)
-        self.score = skill_score
+        #self.score = skill_score
+        return skill_score

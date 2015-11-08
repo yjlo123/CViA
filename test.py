@@ -7,6 +7,7 @@ from cvEvaluator.SkillEvaluator import SkillEvaluator
 from cvParser.Parser import Parser
 from cvEvaluator import Evaluator
 import pprint
+from cvScorer.Scorer import Scorer
 
 __author__ = 'siwei'
 
@@ -72,9 +73,22 @@ cvs = ["cv/simple.doc",
         "cv/LinkedIn/RussellOng.pdf",
         "cv/LinkedIn/YaminiBhaskar.pdf"]
 
+pp = pprint.PrettyPrinter(indent=4)
+
+cv_list = []
+cv_scores = []
+
 for cv in cvs:
     CV_Text = converter.documentToText(cv)
+    #print CV_Text
     cvobj = P.convertToObj(CV_Text)
-    x.set_cvs([cvobj])
-    x.evaluate()
-    x.print_rank()
+    #pp.pprint(cvobj)
+    cv_list.append(cvobj)
+    x.set_cv(cvobj)
+    cv_scores.append(x.evaluate())
+    #x.print_rank()
+
+
+#pp.pprint(cv_scores)
+scorer = Scorer()
+pp.pprint(scorer.cal_all_score(cv_scores))

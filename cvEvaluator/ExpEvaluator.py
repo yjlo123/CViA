@@ -24,4 +24,5 @@ class ExpEvaluator(BaseEvaluator):
                 for s in req_exp_list:
                     if s.lower() in exp['title'].lower():
                         exp_score += base_score
-        self.score = exp_score
+        #self.score = exp_score
+        return exp_score

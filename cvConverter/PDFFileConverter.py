@@ -30,4 +30,4 @@ class PDFFileConverter(BaseConverter):
         device.close()
         str = retstr.getvalue()
         retstr.close()
-        return str
+        return self.text+str
