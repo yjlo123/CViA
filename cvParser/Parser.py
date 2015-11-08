@@ -1,5 +1,5 @@
 import unicodedata
-import doc_converter
+from cvConverter import Converter
 import ExpParser
 import LanguageParser
 import SkillParser
@@ -169,13 +169,13 @@ class Parser:
         self.organizations = ""
         self.i=0
 if __name__ == "__main__":
-
-    converter = doc_converter.DocConverter()
+    converter = Converter.DocConverter()
     CV1 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
     CV2 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
     CV3 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/PraveenDeorani.pdf")
     CV4 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/RussellOng.pdf")
     CV5 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YaminiBhaskar.pdf")
+
     P = Parser()
     print P.convertToObj(CV1)
     print P.convertToObj(CV2)

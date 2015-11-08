@@ -5,6 +5,7 @@ __author__ = 'siwei'
 class LangEvaluator(BaseEvaluator):
 
     def __init__(self):
+        BaseEvaluator.__init__(self)
         self.name = "language"
 
     def evaluate(self, req, cv):

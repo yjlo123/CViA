@@ -31,8 +31,11 @@ class Evaluator:
     def print_rank(self):
         pp = pprint.PrettyPrinter(indent=4)
         #pp.pprint(self.scoreList)
+        to_print = ""
         for e in self.evaluators:
-            pp.pprint(e.to_string())
+            to_print += e.to_string()
+        #pp.pprint(self.cvList[0])
+        pp.pprint(to_print)
 
 
 if __name__ == "__main__":

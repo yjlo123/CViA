@@ -5,6 +5,7 @@ __author__ = 'siwei'
 class EduEvaluator(BaseEvaluator):
 
     def __init__(self):
+        BaseEvaluator.__init__(self)
         self.name = "education"
 
     def evaluate(self, req, cv):

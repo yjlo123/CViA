@@ -1,9 +1,9 @@
+from cvConverter import Converter
 from cvEvaluator.EduEvaluator import EduEvaluator
 from cvEvaluator.ExpEvaluator import ExpEvaluator
 from cvEvaluator.LangEvaluator import LangEvaluator
 from cvEvaluator.OtherEvaluator import OtherEvaluator
 from cvEvaluator.SkillEvaluator import SkillEvaluator
-import doc_converter
 from cvParser.Parser import Parser
 from cvEvaluator import Evaluator
 import pprint
@@ -28,7 +28,7 @@ requirement = {
     'education':['bachelor'],
     'skill': {
         'must': ['windows','vpn','Web Development'],
-        'good': ['xp']
+        'good': ['xp','iOS']
     },
     'language':{
         'must': ['English'],
@@ -48,16 +48,8 @@ x.evaluate()
 x.printRank()
 '''
 
-converter = doc_converter.DocConverter()
-#CV_Text = converter.documentToText("cv/simple.doc")
-CV_Text = converter.documentToText("cv/LinkedIn/DesmondLim.pdf")
-#print CV_Text
+converter = Converter.DocConverter()
 P = Parser()
-cvobj = P.convertToObj(CV_Text)
-pp = pprint.PrettyPrinter(indent=4)
-#pp.pprint(cvobj)
-x.set_cvs([cvobj])
-x.set_requirement(requirement)
 
 L = LangEvaluator()
 S = SkillEvaluator()
@@ -70,5 +62,19 @@ x.add(E)
 x.add(EX)
 x.add(OT)
 
-x.evaluate()
-x.print_rank()
+x.set_requirement(requirement)
+
+
+cvs = ["cv/simple.doc",
+        "cv/LinkedIn/YaminiBhaskar.pdf",
+        "cv/LinkedIn/DonnabelleEmbodo.pdf",
+        "cv/LinkedIn/PraveenDeorani.pdf",
+        "cv/LinkedIn/RussellOng.pdf",
+        "cv/LinkedIn/YaminiBhaskar.pdf"]
+
+for cv in cvs:
+    CV_Text = converter.documentToText(cv)
+    cvobj = P.convertToObj(CV_Text)
+    x.set_cvs([cvobj])
+    x.evaluate()
+    x.print_rank()
