@@ -104,19 +104,20 @@ def process():
         }
 
         cvs = get_cvs()
-        
+
         input_requirement(req)
         input_weight(weights)
         input_job_function(request.form['job'])
         results = evaluate_cvs(cvs)
         for cv in results:
             detailed_scores = ""
-            print cv['score']
             for category in cv['score']:
                 detailed_scores += category + ": " + str(cv['score'][category]) + "\n"
             cv['detailed_scores'] = detailed_scores
             cv['filename'] = cv['cv'].split('/')[-1]
-            print cv['filename']
+
+        results.sort(key=lambda x: -x['total'])
+
         return render_template('result.html', cvs=results)
 
     return render_template('index.html')
