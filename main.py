@@ -1,12 +1,12 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from werkzeug import secure_filename
 
 from doc_converter import DocConverter
 from cvParser.Parser import Parser
 import Service
-from Service import input_requirement, evaluate_cvs
+from Service import input_requirement, evaluate_cvs, input_weight, input_job_function
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'
@@ -14,6 +14,15 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'doc', 'docx'])
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+def get_cvs():
+    files = os.listdir(os.path.join(app.config['UPLOAD_FOLDER']))
+    allowed_files = []
+    for filename in files:
+        print filename
+        if allowed_file(filename):
+            allowed_files.append(app.config['UPLOAD_FOLDER'] + filename)
+    return allowed_files
 
 @app.route("/", methods=['GET'])
 def index():
@@ -46,6 +55,10 @@ def upload():
 
     # GET
     return render_template('upload.html')
+
+@app.route('/upload/<filename>', methods=['GET'])
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -90,14 +103,8 @@ def process():
             'other': parse_number(request.form['other_weight'])
         }
 
-        cvs = [
-            "cv/LinkedIn/YaminiBhaskar.pdf",
-            "cv/LinkedIn/DonnabelleEmbodo.pdf",
-            "cv/LinkedIn/PraveenDeorani.pdf",
-            "cv/LinkedIn/RussellOng.pdf",
-            "cv/LinkedIn/YaminiBhaskar.pdf"
-        ]
-
+        cvs = get_cvs()
+        
         input_requirement(req)
         input_weight(weights)
         input_job_function(request.form['job'])
@@ -108,6 +115,8 @@ def process():
             for category in cv['score']:
                 detailed_scores += category + ": " + str(cv['score'][category]) + "\n"
             cv['detailed_scores'] = detailed_scores
+            cv['filename'] = cv['cv'].split('/')[-1]
+            print cv['filename']
         return render_template('result.html', cvs=results)
 
     return render_template('index.html')

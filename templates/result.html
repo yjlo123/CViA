@@ -7,7 +7,7 @@
     <div class="list-group">
       {% for cv in cvs %}
         <div class="col-md-6">
-          <a href='#'>{{ cv.cv }}</a>
+          <a href="upload/{{ cv.filename }}">{{ cv.cv }}</a>
         </div>
         <div class="col-md-2">
           <a href='#' data-toggle="tooltip" title="{{ cv.detailed_scores }}">{{ cv.total }}</a>
