@@ -42,13 +42,9 @@ def upload():
             file.save(full_path)
             print "Stored file", filename
 
-            cv_text = DocConverter().documentToText(full_path)
-            cv_dict = Parser().convertToObj(cv_text)
             return render_template(
                 'cv.html',
-                filename=filename,
-                cv_text=cv_text,
-                cv_dict=cv_dict
+                filename=filename
             )
 
         return render_template('cv.html', filename=None)

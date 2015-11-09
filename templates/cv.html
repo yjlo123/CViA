@@ -3,9 +3,9 @@
 {% block content %}
   <div>
     {% if filename %}
-      <h3>Succesfully uploaded {{ filename }}!</h3>
-      <p>{{ cv_text }}</p>
-      <p>{{ cv_dict }}</p>
+      <h3>Succesfully uploaded
+        <a href='upload/{{ filename }}'>{{ filename }}!</a>
+      </h3>
     {% else %}
       <h3>Invalid file!</h3>
     {% endif %}
