@@ -20,6 +20,7 @@ class Controller():
         self.cv_list = []
         self.cv_scores = []
         self.setup_evaluators()
+        self.job_function = ""
 
     def setup_evaluators(self):
         language_evaluator = LangEvaluator()
@@ -39,6 +40,12 @@ class Controller():
 
     def setup_requirement(self, requirement):
         self.evaluator.set_requirement(requirement)
+
+    def set_weight(self, weight):
+        self.scorer.set_weight(weight)
+
+    def set_job_function(self, job_function):
+        ""
 
     def evaluate(self, cvs):
         self.clear()

@@ -4,12 +4,12 @@ class Scorer:
     def __init__(self):
         self.ratio = {}
 
-    def set_weight(self, ratio):
+    def set_weight(self, weight):
         ratio_total = 0
-        for r in ratio:
-            ratio_total += ratio[r]
-        for r in ratio:
-            self.ratio[r] = ratio[r]*1.0/ratio_total
+        for r in weight:
+            ratio_total += weight[r]
+        for r in weight:
+            self.ratio[r] = weight[r]*1.0/ratio_total
 
     def set_default_weight(self, scored_cv):
         num_field = len(scored_cv['score'])
