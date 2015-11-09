@@ -9,7 +9,9 @@
         <div class="col-md-6">
           <a href='#'>{{ cv.cv }}</a>
         </div>
-        <div class="col-md-2">{{ cv.total }}</div>
+        <div class="col-md-2">
+          <a href='#' data-toggle="tooltip" title="{{ cv.detailed_scores }}">{{ cv.total }}</a>
+        </div>
       {% endfor %}
     </div>
   </div>

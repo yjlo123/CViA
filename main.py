@@ -79,8 +79,12 @@ def process():
         init()
         input_requirement(req)
         results = evaluate_cvs(cvs)
-        for x in results:
-            print x
+        for cv in results:
+            detailed_scores = ""
+            print cv['score']
+            for category in cv['score']:
+                detailed_scores += category + ": " + str(cv['score'][category]) + "\n"
+            cv['detailed_scores'] = detailed_scores
         return render_template('result.html', cvs=results)
 
     return render_template('index.html')
