@@ -50,13 +50,14 @@ class Controller():
     def evaluate(self, cvs):
         self.clear()
         for cv in cvs:
-            CV_Text = self.converter.documentToText(cv)
-            #print CV_Text
+            CV_Text = self.converter.documentToText(cv).decode('unicode_escape').encode('ascii','ignore')
             cvobj = self.parser.convertToObj(CV_Text)
             #pp.pprint(cvobj)
             self.cv_list.append(cvobj)
+
             self.evaluator.set_cv(cvobj)
             self.cv_scores.append(self.evaluator.evaluate())
+
             #x.print_rank()
 
     def get_scores(self):
@@ -87,7 +88,7 @@ if __name__ == "__main__":
         'other':['Google','reading']
     }
 
-    cvs = ["cv/simple.doc",
+    cvs = [
         "cv/LinkedIn/YaminiBhaskar.pdf",
         "cv/LinkedIn/DonnabelleEmbodo.pdf",
         "cv/LinkedIn/PraveenDeorani.pdf",
