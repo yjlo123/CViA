@@ -51,21 +51,28 @@ def upload():
 def process():
     # POST
     if request.method == 'POST':
+        def parse(text):
+            keywords = []
+            for keyword in text.split(','):
+                if keyword.strip():
+                    keywords.append(keyword.strip())
+            return keywords
+
         req = {
             'education': request.form['education'],
             'skill': {
-                'must': request.form.getlist('skill_must'),
-                'good': request.form.getlist('skill_good')
+                'must': parse(request.form['skill_must']),
+                'good': parse(request.form['skill_good'])
             },
             'language': {
-                'must': request.form.getlist('language_must'),
-                'good': request.form.getlist('language_good')
+                'must': parse(request.form['language_must']),
+                'good': parse(request.form['language_good'])
             },
             'experience': {
-                'must': request.form.getlist('experience_must'),
-                'good': request.form.getlist('experience_must')
+                'must': parse(request.form['experience_must']),
+                'good': parse(request.form['experience_good'])
             },
-            'other': request.form.getlist('other')
+            'other': parse(request.form['other'])
         }
 
         cvs = [
