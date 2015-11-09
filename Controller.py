@@ -19,6 +19,7 @@ class Controller():
         self.scorer = Scorer()
         self.cv_list = []
         self.cv_scores = []
+        self.setup_evaluators()
 
     def setup_evaluators(self):
         language_evaluator = LangEvaluator()
@@ -32,10 +33,15 @@ class Controller():
         self.evaluator.add(experience_evaluator)
         self.evaluator.add(other_evaluator)
 
+    def clear(self):
+        self.cv_list = []
+        self.cv_scores = []
+
     def setup_requirement(self, requirement):
         self.evaluator.set_requirement(requirement)
 
     def evaluate(self, cvs):
+        self.clear()
         for cv in cvs:
             CV_Text = self.converter.documentToText(cv)
             #print CV_Text
