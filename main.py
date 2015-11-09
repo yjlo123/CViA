@@ -19,7 +19,6 @@ def get_cvs():
     files = os.listdir(os.path.join(app.config['UPLOAD_FOLDER']))
     allowed_files = []
     for filename in files:
-        print filename
         if allowed_file(filename):
             allowed_files.append(app.config['UPLOAD_FOLDER'] + filename)
     return allowed_files
@@ -70,9 +69,9 @@ def process():
         def parse_number(text):
             try:
                 number = int(text)
-                return number if number >= 0 else 0
+                return number if number >= 1 else 1
             except e:
-                return 0
+                return 1
 
         req = {
             'education': request.form['education'],
@@ -111,6 +110,7 @@ def process():
                 detailed_scores += category + ": " + str(cv['score'][category]) + "\n"
             cv['detailed_scores'] = detailed_scores
             cv['filename'] = cv['cv'].split('/')[-1]
+            cv['total'] = round(cv['total'], 1)
 
         results.sort(key=lambda x: -x['total'])
 
