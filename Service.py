@@ -14,7 +14,7 @@ def input_requirement(requirement):
 def evaluate_cvs(cvs):
     print "evaluating CVs..."
     controller.evaluate(cvs)
-    return controller.get_cv_score()
+    return controller.get_scores()
 
 def tran_classifier():
     train()

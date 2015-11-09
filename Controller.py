@@ -87,4 +87,4 @@ if __name__ == "__main__":
     ctrl.setup_evaluators()
     ctrl.setup_requirement(requirement)
     ctrl.evaluate(cvs)
-    pp.pprint(ctrl.get_cv_score())
+    pp.pprint(ctrl.get_scores())

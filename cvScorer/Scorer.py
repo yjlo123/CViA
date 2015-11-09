@@ -4,14 +4,14 @@ class Scorer:
     def __init__(self):
         self.ratio = {}
 
-    def set_ratio(self, ratio):
+    def set_weight(self, ratio):
         ratio_total = 0
         for r in ratio:
             ratio_total += ratio[r]
         for r in ratio:
             self.ratio[r] = ratio[r]*1.0/ratio_total
 
-    def set_default_ratio(self, scored_cv):
+    def set_default_weight(self, scored_cv):
         num_field = len(scored_cv['score'])
         for f in scored_cv['score']:
             self.ratio[f] = 1.0/num_field
@@ -25,7 +25,7 @@ class Scorer:
 
     def cal_all_score(self, scored_cvs):
         if self.ratio == {}:
-            self.set_default_ratio(scored_cvs[0])
+            self.set_default_weight(scored_cvs[0])
         for i in range(0, len(scored_cvs)):
             scored_cvs[i]['total'] = self.cal_score(scored_cvs[i])
         return scored_cvs
