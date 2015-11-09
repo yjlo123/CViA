@@ -6,7 +6,7 @@ from werkzeug import secure_filename
 from doc_converter import DocConverter
 from cvParser.Parser import Parser
 import Service
-from Service import init, input_requirement, evaluate_cvs
+from Service import input_requirement, evaluate_cvs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'
@@ -55,8 +55,15 @@ def process():
             keywords = []
             for keyword in text.split(','):
                 if keyword.strip():
-                    keywords.append(keyword.strip())
+                    keywords.append(str(keyword.strip()))
             return keywords
+
+        def parse_number(text):
+            try:
+                number = int(text)
+                return number if number >= 0 else 0
+            except e:
+                return 0
 
         req = {
             'education': request.form['education'],
@@ -75,6 +82,14 @@ def process():
             'other': parse(request.form['other'])
         }
 
+        weights = {
+            'education': parse_number(request.form['education_weight']),
+            'skill': parse_number(request.form['skill_weight']),
+            'language': parse_number(request.form['language_weight']),
+            'experience': parse_number(request.form['experience_weight']),
+            'other': parse_number(request.form['other_weight'])
+        }
+
         cvs = [
             "cv/LinkedIn/YaminiBhaskar.pdf",
             "cv/LinkedIn/DonnabelleEmbodo.pdf",
@@ -83,8 +98,9 @@ def process():
             "cv/LinkedIn/YaminiBhaskar.pdf"
         ]
 
-        init()
         input_requirement(req)
+        input_weight(weights)
+        input_job_function(request.form['job'])
         results = evaluate_cvs(cvs)
         for cv in results:
             detailed_scores = ""
