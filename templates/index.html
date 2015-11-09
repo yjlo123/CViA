@@ -14,6 +14,25 @@
       </h3>
       <div class="well well-small">
         <form role="form" class="form-horizontal" method="post" id="requirements-form" action="/process">
+
+          {# Job #}
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="job">Job</label>
+            <div class="col-md-8">
+              <select class="form-control" id="job" name="job" title="" type="text">
+                <option value=""></option>
+                <option value="Accounting">Accounting</option>
+                <option value="Banking">Banking</option>
+                <option value="Design">Design</option>
+                <option value="Education">Education</option>
+                <option value="Engineering">Engineering</option>
+                <option value="IT">IT</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Management">Management</option>
+              </select>
+            </div>
+          </div>
+
           {# education #}
           <div class="form-group">
             <label class="col-md-4 control-label" for="education">Education</label>

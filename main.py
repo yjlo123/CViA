@@ -5,7 +5,8 @@ from werkzeug import secure_filename
 
 from doc_converter import DocConverter
 from cvParser.Parser import Parser
-from cvParser.Parser import Parser
+import Service
+from Service import init, input_requirement, evaluate_cvs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'cv/'
@@ -66,7 +67,21 @@ def process():
             },
             'other': request.form.getlist('other')
         }
-        print req
+
+        cvs = [
+            "cv/LinkedIn/YaminiBhaskar.pdf",
+            "cv/LinkedIn/DonnabelleEmbodo.pdf",
+            "cv/LinkedIn/PraveenDeorani.pdf",
+            "cv/LinkedIn/RussellOng.pdf",
+            "cv/LinkedIn/YaminiBhaskar.pdf"
+        ]
+
+        init()
+        input_requirement(req)
+        results = evaluate_cvs(cvs)
+        for x in results:
+            print x
+        return render_template('result.html', cvs=results)
 
     return render_template('index.html')
 
