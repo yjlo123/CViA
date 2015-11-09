@@ -16,19 +16,20 @@ cvs = [("cv/LinkedIn/YaminiBhaskar.pdf","2"),
 
 train_data = []
 
-print "Converting CV files ..."
-converter = Converter.DocConverter()
-parser = Parser()
-print "Parsing CVs..."
-for cv in cvs:
-    CV_Text = converter.documentToText(root_dir_path+"/"+cv[0])
-    cvobj = parser.convertToObj(CV_Text)
-    train_data.append((cvobj, cv[1]))
+def train():
+    print "Converting CV files ..."
+    converter = Converter.DocConverter()
+    parser = Parser()
+    print "Parsing CVs..."
+    for cv in cvs:
+        CV_Text = converter.documentToText(root_dir_path+"/"+cv[0])
+        cvobj = parser.convertToObj(CV_Text)
+        train_data.append((cvobj, cv[1]))
 
 
-pp = pprint.PrettyPrinter(indent=4)
-#pp.pprint(train_data)
+    pp = pprint.PrettyPrinter(indent=4)
+    #pp.pprint(train_data)
 
-cl = Classifier()
-cl.train(train_data)
-cl.save()
+    cl = Classifier()
+    cl.train(train_data)
+    cl.save()
