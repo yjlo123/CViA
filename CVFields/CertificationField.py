@@ -1,4 +1,4 @@
-from Field import Field
+from CVFields.Field import Field
 
 __author__ = 'haojiang'
 

@@ -39,11 +39,12 @@ class Parser:
         self.certificationsParser = CertificationsParser.Certifications()
         self.honors = ""
         self.organizations = ""
+        self.courses = ""
         self.i=0
         self.keywords = ["Summary","Experience","Publications",
                          "Projects","Languages","Education",
                          "Skills & Expertise","Volunteer Experience","Certifications",
-                         "Interests","Honors and Awards","Organizations"]
+                         "Interests","Honors and Awards","Organizations","Courses"]
 
     def IsKeyWord(self,word):
         return word in self.keywords
@@ -128,6 +129,9 @@ class Parser:
                 elif word == "Organizations":
                     str = self.ConstructStr(textList)
                     self.organizations = str
+                elif word == "Courses":
+                    str = self.ConstructStr(textList)
+                    self.courses = str
             self.i = self.i + 1
 
     def convertToObj(self,text):
@@ -170,14 +174,15 @@ class Parser:
         self.certificationsParser = CertificationsParser.Certifications()
         self.honors = ""
         self.organizations = ""
+        self.courses = ""
         self.i=0
 if __name__ == "__main__":
     converter = Converter.DocConverter()
-    CV1 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DesmondLim.pdf")
-    CV2 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/DonnabelleEmbodo.pdf")
-    CV3 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/PraveenDeorani.pdf")
-    CV4 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/RussellOng.pdf")
-    CV5 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YaminiBhaskar.pdf")
+    CV1 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YingxinZhang.pdf")
+    CV2 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YukunDuan.pdf")
+    CV3 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/ZhenNi.pdf")
+    CV4 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/Teck KeongSeow.pdf")
+    CV5 = converter.documentToText("/Users/haojiang/Desktop/CViA/cv/YimingZhou.pdf")
 
     P = Parser()
     print P.convertToObj(CV1)

@@ -2,6 +2,6 @@ __author__ = 'haojiang'
 
 
 
-from Field import Field
+from CVFields.Field import Field
 
 class SummaryField(Field):pass
