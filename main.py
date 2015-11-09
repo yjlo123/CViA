@@ -58,7 +58,7 @@ def uploaded_file(filename):
 @app.route('/upload/all', methods=['GET'])
 def all_cvs():
     cvs = get_cvs()
-    return render_template('cvs.html', cvs=cvs)
+    return render_template('cvs.html', cvs=[cv.split('/')[-1] for cv in cvs])
 
 @app.route('/process', methods=['POST'])
 def process():
