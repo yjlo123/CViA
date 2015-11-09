@@ -1,12 +1,10 @@
 from Controller import Controller
 from train_classifier import train
-
+import pprint
 __author__ = 'siwei'
 
 controller = Controller()
-
-def init():
-    controller.setup_evaluators()
+controller.setup_evaluators()
 
 def input_requirement(requirement):
     controller.setup_requirement(requirement)
@@ -33,10 +31,10 @@ if __name__ == "__main__":
             'good': ['Chinese']
         },
         'experience':{
-            'must': ['engineer'],
+            'must': ['r'],
             'good': []
         },
-        'other':['Google','reading']
+        'other':['reading']
     }
 
     cvs = ["cv/simple.doc",
@@ -46,6 +44,6 @@ if __name__ == "__main__":
         "cv/LinkedIn/RussellOng.pdf",
         "cv/LinkedIn/YaminiBhaskar.pdf"]
 
-    init()
     input_requirement(requirement)
-    print evaluate_cvs(cvs)
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(evaluate_cvs(cvs))
