@@ -9,6 +9,12 @@ controller.setup_evaluators()
 def input_requirement(requirement):
     controller.setup_requirement(requirement)
 
+def input_weight(weight):
+    "123"
+
+def input_job_function(job_function):
+    "123"
+
 def evaluate_cvs(cvs):
     print "evaluating CVs..."
     controller.evaluate(cvs)
@@ -16,7 +22,6 @@ def evaluate_cvs(cvs):
 
 def tran_classifier():
     train()
-
 
 
 if __name__ == "__main__":
