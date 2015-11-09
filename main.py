@@ -55,6 +55,11 @@ def upload():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/upload/all', methods=['GET'])
+def all_cvs():
+    cvs = get_cvs()
+    return render_template('cvs.html', cvs=cvs)
+
 @app.route('/process', methods=['POST'])
 def process():
     # POST
